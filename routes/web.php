@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/", "ActionsController@index")->middleware("auth")->name("mainPage");
+Route::post("/", "ActionsController@store");
+Route::get("/{id}/edit", "ActionsController@edit")->name("edit");
+Route::put("/update/{id}", "ActionsController@update")->name("update");
+Route::get("/delete/{id}", "ActionsController@destroy")->name("delete");
+
+Auth::routes();
